@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+
+    <!-- ..........................filter classes added below.........................-->
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>Auth.LoginFilter</filter-class>
+    </filter>
+    <!--http://www.coderanch.com/t/485819/Servlets/java/Multiple-url-pattern-filter-mapping-->
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/app/*</url-pattern>
+        <url-pattern>/test/*</url-pattern>
+        <url-pattern>/JQuery/*</url-pattern>
+    </filter-mapping>
+    <!-- ..........................filter classes added above.........................-->
+
+    <servlet>
+        <servlet-name>RefreshPage</servlet-name>
+        <servlet-class>Utilities.RefreshPage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RefreshPage</servlet-name>
+        <url-pattern>/refr.php</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>registered.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>

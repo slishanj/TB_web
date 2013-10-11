@@ -1,0 +1,16 @@
+Oct 11, 2013 3:52:23 PM org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/TB_Mo_BACKEND] registered the JDBC driver [com.mysql.jdbc.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+
+http://stackoverflow.com/questions/3320400/to-prevent-a-memory-leak-the-jdbc-driver-has-been-forcibly-unregistered
+
+Since version 6.0.24, Tomcat ships with a memory leak detection feature, which in turn can lead to this kind of warning messages when there's a JDBC 4.0 compatible driver in the webapp's /WEB-INF/lib which auto-registers itself during webapp's startup using the ServiceLoader API, but which did not auto-deregister itself during webapp's shutdown. This message is purely informal, Tomcat has already taken the memory leak prevention action accordingly.
+
+What can you do?
+
+Ignore those warnings. Tomcat is doing its job right. The actual bug is in someone else's code (the JDBC driver in question), not in yours. Be happy that Tomcat did its job properly and wait until the JDBC driver vendor get it fixed so that you can upgrade the driver.
+
+Downgrade to Tomcat 6.0.23 or older so that you will not be bothered with those warnings. But it will silently keep leaking memory. Not sure if that's good to know after all. Those kind of memory leaks are one of the major causes behind OutOfMemoryError issues during Tomcat hotdeployments.
+
+Move the JDBC driver to Tomcat's /lib folder and have a connection pooled datasource to manage the driver. Note that Tomcat's builtin DBCP does not deregister drivers properly on close. See also bug DBCP-322. The DBCP project is however currently stalling. I wouldn't expect quick updates. You would rather like to replace DBCP by another connection pool which is doing its job better then DBCP. For example BoneCP or Tomcat JDBC Pool maybe?
+
+--------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,50 @@
+/*
+    Document   : all
+    Created on : Oct 11, 2013, 4:19:13 PM
+    Author     : Administrator
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body{background-color:  mintcream}
+h2{font-family: monospace}
+hr{    background-color: silver;margin: 30px 0px}
+
+/*..................................................................................*/
+.otherInfoTable{
+    background-color: lavender;
+    width: 100%;
+    border:1px solid lightgray
+}
+.otherInfoTable th,td{border: 1px solid lightgray}
+/*.otherInfoTable {border: 1px solid darkgray}*/
+.otherInfoTable .timestampCol{  width: 100px;}
+.otherInfoTable .IDCol{    width: 200px;}
+.otherInfoTable tbody tr:hover , tr.selected{    background-color: #FFCF8B}
+/*..................................................................................*/
+
+
+.tbInfo{width: 100%;
+        border:1px solid darkgray}
+.tbInfo th{border: 1px solid darkgray}
+.tbInfo td{border: 1px solid darkgray}
+.tbInfo .timestampCol{width: 100px}
+.tbInfo .IDCol{width: 200px;}
+.tbInfo tbody tr:hover , tr.selected{    background-color: #FFCF8B}
+
+/*..................................................................................*/
+
+.mainTable{border:1px solid darkgray}
+.mainTable th{border: 1px solid darkgray;
+              padding:5px 10px 5px 10px;
+              font-variant: small-caps;}
+.mainTable td{border: 1px solid darkgray;}
+.mainTable .timestampCol{width: 200px}
+.mainTable .IDCol{}
+.mainTable tbody tr:hover , tr.selected{    background-color: #FFCF8B}
+
+/*..................................................................................*/
+
+
+
+
